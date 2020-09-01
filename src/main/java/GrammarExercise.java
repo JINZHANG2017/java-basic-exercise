@@ -7,6 +7,7 @@ public class GrammarExercise {
         String secondWordList = "";
 
         List<String> result = findCommonWordsWithSpace(firstWordList,secondWordList);
+        System.out.println("test");
         //按要求输出到命令行
 
     }
