@@ -15,7 +15,7 @@ class GrammarExerciseTest {
         grammarExercise = new GrammarExercise();
     }
 
-    //@Test
+    @Test
     void should_return_common_words_with_space() {
         //given
         String first = "apple,juice,mother,people,beautiful,apple,dog";
@@ -27,7 +27,7 @@ class GrammarExerciseTest {
         assertIterableEquals(result, expected);
     }
 
-   // @Test
+   @Test
     void should_throw_exception_when_input_has_two_comma() {
         //given
         String first = "apple,,juice,mother,people,beautiful,apple,dog";
@@ -38,7 +38,7 @@ class GrammarExerciseTest {
         });
     }
 
-    //@Test
+    @Test
     void should_throw_exception_when_input_contains_invalid_symbol() {
         //given
         String first = "apple,juice,mother,people,bea&&utiful,apple,dog";
@@ -49,13 +49,13 @@ class GrammarExerciseTest {
         });
     }
 
-    @Test
-    void regexTest(){
-        String regex1="[a-zA-Z,]+";
-        String regex2=".*,{2}.*";
-        String str="asf,sdfs,,d";
-        if(Pattern.matches(regex2,str)){
-            throw new RuntimeException("not valid");
-        }
-    }
+//    @Test
+//    void regexTest(){
+//        String regex1="[a-zA-Z,]+";
+//        String regex2=".*,{2}.*";
+//        String str="asf,sdfs,,d";
+//        if(Pattern.matches(regex2,str)){
+//            throw new RuntimeException("not valid");
+//        }
+//    }
 }

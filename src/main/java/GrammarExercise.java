@@ -31,14 +31,23 @@ public class GrammarExercise {
 
     public static List<String> findCommonWordsWithSpace(String firstWordList, String secondWordList) {
         //在这编写实现代码
+        String regex1="[a-zA-Z,]+"; //匹配字母或逗号
+        String regex2=".*,{2}.*";  //匹配两个或以上连续逗号
+        //满足regex1且不满足regex2即为有效
+        boolean isFirstWordValid = Pattern.matches(regex1, firstWordList)&&!Pattern.matches(regex2, firstWordList);
+        boolean isSecondWordValid = Pattern.matches(regex1, secondWordList)&&!Pattern.matches(regex2, secondWordList);
+        if(!isFirstWordValid||!isSecondWordValid){
+            throw new RuntimeException("input not valid");
+        }
+
         List<String> list1= Arrays.asList(firstWordList.split(","));
         List<String> list2= Arrays.asList(secondWordList.split(","));
         //都转成小写
-        List<String> lowerCaseList1 = list1.stream().map(String::toLowerCase).collect(Collectors.toList());
-        List<String> lowerCaseList2 = list2.stream().map(String::toLowerCase).collect(Collectors.toList());
+        List<String> upperCaseList1 = list1.stream().map(String::toUpperCase).collect(Collectors.toList());
+        List<String> upperCaseList2 = list2.stream().map(String::toUpperCase).collect(Collectors.toList());
         //找出都包含的字符串
-        List<String> commonList = lowerCaseList1.stream().filter(lowerCaseList2::contains).collect(Collectors.toList());
+        List<String> commonList = upperCaseList1.stream().filter(upperCaseList2::contains).collect(Collectors.toList());
         //去掉重复的元素,排序，返回
-        return commonList.stream().distinct().sorted().collect(Collectors.toList());
+        return commonList.stream().map(s-> s.replace("", " ").trim()).distinct().sorted().collect(Collectors.toList());
     }
 }
